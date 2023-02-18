@@ -243,6 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageMaterial: {fileID: 2100000, guid: b21da4fb28240ca478409c2289afbb89, type: 2}
   hp: 5
+  explosion: {fileID: 8300000, guid: 921397cf60bfbc4469a090013e1cee55, type: 3}
 --- !u!1001 &228917065
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ public class IEnemy : MonoBehaviour
 
     [SerializeField] private int hp;
 
+    [SerializeField] private AudioClip explosion;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,7 @@ public class IEnemy : MonoBehaviour
         {
             PPEffectManager.instance.Flash(20f);
             GameManager.instance.cameraBehaviour.Shake(0.5f);
+            SoundManager.instance.PlayRandomized(explosion);
             Destroy(gameObject);
         }
     }
