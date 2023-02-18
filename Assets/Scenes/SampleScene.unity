@@ -135,9 +135,10 @@ GameObject:
   - component: {fileID: 70073715}
   - component: {fileID: 70073714}
   - component: {fileID: 70073713}
+  - component: {fileID: 70073717}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -228,6 +229,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &70073717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70073712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55549969fae54d046a8bec9d45e34753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMaterial: {fileID: 2100000, guid: b21da4fb28240ca478409c2289afbb89, type: 2}
 --- !u!1001 &228917065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -407,7 +421,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -513,7 +527,7 @@ GameObject:
   - component: {fileID: 1578904568}
   - component: {fileID: 1578904567}
   - component: {fileID: 1578904571}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}

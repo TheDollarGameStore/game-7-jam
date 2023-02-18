@@ -17,7 +17,19 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.forward * Time.deltaTime * bulletSpeed;
+        Vector3 movement = transform.forward * Time.deltaTime * bulletSpeed;
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, movement, out hit, movement.magnitude))
+        {
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                hit.collider.GetComponent<IEnemy>().TakeDamage();
+                Destroy(gameObject);
+            }
+        }
+
+        transform.position += movement;
     }
 
     void DestroySelf()
