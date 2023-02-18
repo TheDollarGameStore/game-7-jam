@@ -8,6 +8,8 @@ public class IEnemy : MonoBehaviour
     private Material defaultMaterial;
     [SerializeField] private Material damageMaterial;
 
+    [SerializeField] private int hp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,14 @@ public class IEnemy : MonoBehaviour
         mr.material = damageMaterial;
         CancelInvoke("ResetMaterial");
         Invoke("ResetMaterial", 0.075f);
+
+        hp -= 1;
+
+        if (hp <= 0)
+        {
+            PPEffectManager.instance.Flash(20f);
+            Destroy(gameObject);
+        }
     }
 
     private void ResetMaterial()

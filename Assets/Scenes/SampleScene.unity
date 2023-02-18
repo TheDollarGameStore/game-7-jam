@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMaterial: {fileID: 2100000, guid: b21da4fb28240ca478409c2289afbb89, type: 2}
+  hp: 5
 --- !u!1001 &228917065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -879,6 +880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1687944144}
   - component: {fileID: 1687944143}
+  - component: {fileID: 1687944145}
   m_Layer: 6
   m_Name: PostProcess
   m_TagString: Untagged
@@ -918,6 +920,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1687944145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687944142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928db53960007514786599826c5f52f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1810446026
 GameObject:
   m_ObjectHideFlags: 0
