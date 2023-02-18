@@ -8,6 +8,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField] private AudioClip shootSound;
 
+    private bool loaded = true;
+
     void Shoot()
     {
         Bullet bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
@@ -22,9 +24,16 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) && loaded)
         {
+            loaded = false;
+            Invoke("Reload", 0.125f);
             Shoot();
         }
+    }
+
+    void Reload()
+    {
+        loaded = true;
     }
 }
