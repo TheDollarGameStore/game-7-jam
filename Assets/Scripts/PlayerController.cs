@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float mouseSensitivity = 100f;
+    [SerializeField] private float mouseSensitivity = 100f;
 
-    bool isStrafing = false;
+    private bool isStrafing = false;
+
+    [SerializeField] private GameObject bulletPrefab;
+
+
 
     void Start()
     {
@@ -15,6 +19,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+        }
+
         if (Input.GetMouseButton(1))
         {
             isStrafing = true;
@@ -47,29 +56,27 @@ public class PlayerController : MonoBehaviour
         }
 
         //Clamp player
-        float clampedX = transform.position.x;
-        float clampedZ = transform.position.z;
+        ClampPlayer();
+    }
 
-        if (clampedX < -20f)
+    void Shoot()
+    {
+        Bullet bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
+
+        bullet.bulletDir = transform.rotation.eulerAngles;
+
+        GameManager.instance.cameraBehaviour.Nudge();
+    }
+
+    void ClampPlayer()
+    {
+        if (Vector3.Distance(new Vector3(0f, 1.5f, 0f), transform.position) >= 20f)
         {
-            clampedX = -20f;
-        }
+            Vector3 directionVector = transform.position - new Vector3(0f, 1.5f, 0f);
 
-        if (clampedX > 20f)
-        {
-            clampedX = 20f;
-        }
+            Vector3 maxDistance = new Vector3(directionVector.x, 1.5f, directionVector.z).normalized * 20f;
 
-        if (clampedZ < -20f)
-        {
-            clampedZ = -20f;
+            transform.position = maxDistance;
         }
-
-        if (clampedZ > 20f)
-        {
-            clampedZ = 20f;
-        }
-
-        transform.position = new Vector3(clampedX, transform.position.y, clampedZ);
     }
 }
