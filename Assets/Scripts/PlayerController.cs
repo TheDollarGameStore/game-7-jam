@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject bulletPrefab;
 
+    [SerializeField] private AudioClip shootSound;
+
 
 
     void Start()
@@ -69,6 +71,8 @@ public class PlayerController : MonoBehaviour
         bullet.bulletDir = transform.rotation.eulerAngles;
 
         GameManager.instance.cameraBehaviour.Nudge();
+
+        SoundManager.instance.PlayRandomized(shootSound);
     }
 
     void ClampPlayer()

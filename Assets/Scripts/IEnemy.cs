@@ -29,6 +29,7 @@ public class IEnemy : MonoBehaviour
         if (hp <= 0)
         {
             PPEffectManager.instance.Flash(20f);
+            GameManager.instance.cameraBehaviour.Shake(0.5f);
             Destroy(gameObject);
         }
     }
