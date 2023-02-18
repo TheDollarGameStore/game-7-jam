@@ -14,6 +14,8 @@ public class IEnemy : MonoBehaviour
 
     [SerializeField] private GameObject deathParticles;
 
+    [SerializeField] private int scoreValue;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -32,12 +34,18 @@ public class IEnemy : MonoBehaviour
 
         if (hp <= 0)
         {
-            PPEffectManager.instance.Flash(20f);
-            GameManager.instance.cameraBehaviour.Shake(0.5f);
-            SoundManager.instance.PlayRandomized(explosion);
-            Instantiate(deathParticles, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        PPEffectManager.instance.Flash(20f);
+        GameManager.instance.cameraBehaviour.Shake(0.5f);
+        SoundManager.instance.PlayRandomized(explosion);
+        Instantiate(deathParticles, transform.position, Quaternion.identity);
+        GameManager.instance.AddScore(scoreValue);
+        Destroy(gameObject);
     }
 
     private void ResetMaterial()

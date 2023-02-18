@@ -8,10 +8,6 @@ public class PlayerController : MonoBehaviour
 
     private bool isStrafing = false;
 
-    [SerializeField] private GameObject bulletPrefab;
-
-    [SerializeField] private AudioClip shootSound;
-
 
 
     void Start()
@@ -21,11 +17,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-        }
-
         if (Input.GetMouseButton(1))
         {
             isStrafing = true;
@@ -64,16 +55,7 @@ public class PlayerController : MonoBehaviour
         ClampPlayer();
     }
 
-    void Shoot()
-    {
-        Bullet bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
-
-        bullet.bulletDir = transform.rotation.eulerAngles;
-
-        GameManager.instance.cameraBehaviour.Nudge();
-
-        SoundManager.instance.PlayRandomized(shootSound);
-    }
+    
 
     void ClampPlayer()
     {
