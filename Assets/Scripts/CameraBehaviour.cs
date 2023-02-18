@@ -18,7 +18,10 @@ public class CameraBehaviour : MonoBehaviour
     void Update()
     {
         transform.localPosition = Vector3.Lerp(transform.localPosition, basePosition, 10f * Time.deltaTime);
+
         camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, 70f, 8f * Time.deltaTime);
+
+        camera.transform.localRotation = Quaternion.Lerp(camera.transform.localRotation, Quaternion.Euler(Vector3.zero), 10f * Time.deltaTime);
     }
 
     public void Nudge()

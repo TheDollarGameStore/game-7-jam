@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
             float strafeX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float strafeZ = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
+            //Tilt Camera
+            GameManager.instance.cameraBehaviour.gameObject.transform.localRotation = Quaternion.Euler(GameManager.instance.cameraBehaviour.transform.localRotation.eulerAngles + new Vector3(0f, 0f, strafeX / -2f));
+
             Vector3 strafeDirection = new Vector3(strafeX, 0, strafeZ);
             Vector3 moveDirection = transform.TransformDirection(strafeDirection);
 
