@@ -15,7 +15,7 @@ public class IEnemy : MonoBehaviour
     [SerializeField] private GameObject deathParticles;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         mr = GetComponent<MeshRenderer>();
         defaultMaterial = mr.material;
