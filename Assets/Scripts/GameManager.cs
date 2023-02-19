@@ -12,8 +12,11 @@ public class GameManager : MonoBehaviour
     public GameObject playerObject;
 
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text multiplierText;
 
     private int score;
+
+    private int multiplier;
 
 
     private void Awake()
@@ -24,13 +27,20 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        multiplier = 1;
         score = 0;
     }
 
     // Update is called once per frame
     public void AddScore(int value)
     {
-        score += value;
+        score += value * multiplier;
         scoreText.text = score.ToString();
+    }
+
+    public void AddMultiplier(int value)
+    {
+        multiplier += value;
+        multiplierText.text = "X" + multiplier.ToString();
     }
 }

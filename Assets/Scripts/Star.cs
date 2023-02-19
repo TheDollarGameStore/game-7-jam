@@ -6,6 +6,8 @@ public class Star : MonoBehaviour
 {
     [HideInInspector] public Vector3 direction;
 
+    bool destroying;
+
     private void Start()
     {
         if (Vector3.Distance(new Vector3(0f, 1.5f, 0f), transform.position) >= 18f)
@@ -16,6 +18,8 @@ public class Star : MonoBehaviour
 
             transform.position = maxDistance;
         }
+
+        Invoke("DestroySelf", 2f);
     }
 
     // Update is called once per frame
@@ -23,5 +27,30 @@ public class Star : MonoBehaviour
     {
         direction = Vector3.Lerp(direction, Vector3.zero, 5f * Time.deltaTime);
         transform.position += direction * Time.deltaTime;
+
+        if (destroying)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, 5f * Time.deltaTime);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (Vector3.Distance(new Vector3(GameManager.instance.playerObject.transform.position.x, 0f, GameManager.instance.playerObject.transform.position.z), new Vector3(transform.position.x, 0f, transform.position.z)) <= 2f)
+        {
+            GameManager.instance.AddMultiplier(1);
+            Destroy(gameObject);
+        }
+    }
+
+    void DestroySelf()
+    {
+        destroying = true;
+        Invoke("DestroyForReal", 0.25f);
+    }
+
+    void DestroyForReal()
+    {
+        Destroy(gameObject);
     }
 }
