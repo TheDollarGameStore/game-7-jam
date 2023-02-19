@@ -64,4 +64,12 @@ public class IEnemy : MonoBehaviour
     {
         mr.material = defaultMaterial;
     }
+
+    public void Update()
+    {
+        if (Vector3.Distance(transform.position, GameManager.instance.playerObject.transform.position) <= 1f)
+        {
+            GameManager.instance.playerObject.GetComponent<PlayerBehaviour>().Die();
+        }
+    }
 }

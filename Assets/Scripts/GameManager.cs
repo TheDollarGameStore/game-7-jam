@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Text multiplierText;
 
+    [HideInInspector] public bool gameOver;
+
     private int score;
 
     private int multiplier;

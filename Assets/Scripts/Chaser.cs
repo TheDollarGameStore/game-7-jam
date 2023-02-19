@@ -14,6 +14,7 @@ public class Chaser : IEnemy
     // Update is called once per frame
     void Update()
     {
+        base.Update();
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(GameManager.instance.playerObject.transform.position - transform.position, Vector3.up), 5f * Time.deltaTime);
         transform.position += transform.forward * movementSpeed * Time.deltaTime;
     }

@@ -8,6 +8,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField] private AudioClip shootSound;
 
+    [SerializeField] private GameObject playerCam;
+
     private bool loaded = true;
 
     void Shoot()
@@ -30,6 +32,13 @@ public class PlayerBehaviour : MonoBehaviour
             Invoke("Reload", 0.2f);
             Shoot();
         }
+    }
+
+    public void Die()
+    {
+        playerCam.transform.parent = null;
+        GameManager.instance.gameOver = true;
+        //Destroy(gameObject);
     }
 
     void Reload()
