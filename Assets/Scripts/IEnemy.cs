@@ -16,6 +16,8 @@ public class IEnemy : MonoBehaviour
 
     [SerializeField] private int scoreValue;
 
+    [SerializeField] private GameObject starPrefab;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -45,6 +47,16 @@ public class IEnemy : MonoBehaviour
         SoundManager.instance.PlayRandomized(explosion);
         Instantiate(deathParticles, transform.position, Quaternion.identity);
         GameManager.instance.AddScore(scoreValue);
+
+        int amount = Random.Range(1, 6);
+
+        Random.InitState(System.DateTime.Now.Millisecond);
+
+        for (int i = 0; i < amount; i++)
+        {
+            Instantiate(starPrefab, new Vector3(transform.position.x, 1.75f, transform.position.z), Quaternion.identity).GetComponent<Star>().direction = new Vector3(Random.Range(-1, 1f), 0f, Random.Range(-1, 1f)).normalized * 10f;
+        }
+
         Destroy(gameObject);
     }
 

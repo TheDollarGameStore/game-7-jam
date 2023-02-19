@@ -9,6 +9,8 @@ public class Floater : IEnemy
     void Start()
     {
         base.Start();
+        transform.rotation = Quaternion.LookRotation(GameManager.instance.playerObject.transform.position - transform.position, Vector3.up);
+        transform.rotation = Quaternion.Euler(-90f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
     }
 
     // Update is called once per frame
