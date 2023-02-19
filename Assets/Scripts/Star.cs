@@ -5,6 +5,7 @@ using UnityEngine;
 public class Star : MonoBehaviour
 {
     [HideInInspector] public Vector3 direction;
+    [SerializeField] private AudioClip collectSound;
 
     bool destroying;
 
@@ -19,7 +20,7 @@ public class Star : MonoBehaviour
             transform.position = maxDistance;
         }
 
-        Invoke("DestroySelf", 2f);
+        Invoke("DestroySelf", 3f);
     }
 
     // Update is called once per frame
@@ -39,6 +40,7 @@ public class Star : MonoBehaviour
         if (Vector3.Distance(new Vector3(GameManager.instance.playerObject.transform.position.x, 0f, GameManager.instance.playerObject.transform.position.z), new Vector3(transform.position.x, 0f, transform.position.z)) <= 2f)
         {
             GameManager.instance.AddMultiplier(1);
+            SoundManager.instance.PlayRandomized(collectSound);
             Destroy(gameObject);
         }
     }

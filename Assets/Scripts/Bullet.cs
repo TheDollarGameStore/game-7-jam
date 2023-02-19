@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
         Vector3 movement = transform.forward * Time.deltaTime * bulletSpeed;
 
         RaycastHit hit;
-        if (Physics.SphereCast(transform.position, 0.5f, movement, out hit, movement.magnitude))
+        if (Physics.Raycast(transform.position, movement, out hit, movement.magnitude))
         {
             if (hit.collider.CompareTag("Enemy"))
             {

@@ -27,7 +27,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetMouseButton(0) && loaded)
         {
             loaded = false;
-            Invoke("Reload", 0.125f);
+            Invoke("Reload", 0.2f);
             Shoot();
         }
     }
