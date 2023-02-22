@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.gameOver)
+        {
+            return;
+        }
+
         if (Input.GetMouseButton(1))
         {
             isStrafing = true;

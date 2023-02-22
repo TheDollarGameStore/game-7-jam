@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,5 +45,16 @@ public class GameManager : MonoBehaviour
     {
         multiplier += value;
         multiplierText.text = "X" + multiplier.ToString();
+    }
+
+    private void Update()
+    {
+        if (gameOver)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
     }
 }

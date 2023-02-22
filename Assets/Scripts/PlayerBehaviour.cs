@@ -10,6 +10,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField] private GameObject playerCam;
 
+    [SerializeField] private GameObject deathParticles;
+
+    [SerializeField] private AudioClip deathSound;
+
     private bool loaded = true;
 
     void Shoot()
@@ -26,6 +30,11 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.instance.gameOver)
+        {
+            return;
+        }
+
         if (Input.GetMouseButton(0) && loaded)
         {
             loaded = false;
@@ -36,8 +45,14 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void Die()
     {
-        playerCam.transform.parent = null;
-        GameManager.instance.gameOver = true;
+        if (!GameManager.instance.gameOver)
+        {
+            SoundManager.instance.PlayRandomized(deathSound);
+            playerCam.transform.parent = null;
+            GameManager.instance.gameOver = true;
+            GameManager.instance.cameraBehaviour.Shake(10f);
+            Instantiate(deathParticles, transform.position + (Vector3.up * 2f), Quaternion.identity);
+        }
         //Destroy(gameObject);
     }
 

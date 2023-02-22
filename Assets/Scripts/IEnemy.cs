@@ -67,7 +67,7 @@ public class IEnemy : MonoBehaviour
 
     public void Update()
     {
-        if (Vector3.Distance(transform.position, GameManager.instance.playerObject.transform.position) <= 1f)
+        if (Vector3.Distance(new Vector3(transform.position.x, 0f, transform.position.z), GameManager.instance.playerObject.transform.position) <= 1.75f)
         {
             GameManager.instance.playerObject.GetComponent<PlayerBehaviour>().Die();
         }

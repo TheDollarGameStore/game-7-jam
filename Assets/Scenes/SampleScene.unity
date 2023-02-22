@@ -1951,6 +1951,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7176121040413562736, guid: a963f3a07452d7f4c8fa0934e6fd1177, type: 3}
   shootSound: {fileID: 8300000, guid: c9d1f921fa741464ea10e5ea18570e35, type: 3}
   playerCam: {fileID: 963194225}
+  deathParticles: {fileID: 1830139182949298403, guid: 55053a6cf31902348a54c549959b255f, type: 3}
+  deathSound: {fileID: 8300000, guid: 0311262ba1c3a2b4a8abfcf59e2296a7, type: 3}
 --- !u!1001 &1613524771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2186,6 +2188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaser: {fileID: 6217315739592920894, guid: 4cc1377ac34baf744b8d096a0aa90962, type: 3}
   floater: {fileID: 6513979959840619548, guid: 0a364caf5eae8764cb60dedaa44b2759, type: 3}
+  hider: {fileID: 126213371766414164, guid: 18a04602b7010cd44a076559ff609b2e, type: 3}
 --- !u!1001 &1867767329
 PrefabInstance:
   m_ObjectHideFlags: 0

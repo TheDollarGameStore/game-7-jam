@@ -38,9 +38,9 @@ public class CameraBehaviour : MonoBehaviour
             camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, 70f, 8f * Time.deltaTime);
 
             camera.transform.localRotation = Quaternion.Lerp(camera.transform.localRotation, Quaternion.Euler(Vector3.zero), 10f * Time.deltaTime);
-
-            shakeIntensity = Mathf.Lerp(shakeIntensity, 0f, 10f * Time.deltaTime);
         }
+
+        shakeIntensity = Mathf.Lerp(shakeIntensity, 0f, 5f * Time.deltaTime);
     }
 
     public void Nudge()
