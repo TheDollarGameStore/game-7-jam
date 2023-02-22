@@ -1936,6 +1936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 200
+  maxPlayerMovementSpeed: 0.25
 --- !u!114 &1578904572
 MonoBehaviour:
   m_ObjectHideFlags: 0

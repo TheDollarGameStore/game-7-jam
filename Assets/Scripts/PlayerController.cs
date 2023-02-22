@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float mouseSensitivity = 100f;
 
+    [SerializeField] private float maxPlayerMovementSpeed;
+
     private bool isStrafing = false;
 
 
@@ -42,6 +44,8 @@ public class PlayerController : MonoBehaviour
             Vector3 strafeDirection = new Vector3(strafeX, 0, strafeZ);
             Vector3 moveDirection = transform.TransformDirection(strafeDirection);
 
+            moveDirection = ClampMoveDirection(moveDirection);
+
             transform.position += moveDirection;
         }
         else
@@ -53,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
             Vector3 moveDirection = transform.forward * moveZ;
 
+            moveDirection = ClampMoveDirection(moveDirection);
+
             transform.position += moveDirection;
         }
 
@@ -60,6 +66,15 @@ public class PlayerController : MonoBehaviour
         ClampPlayer();
     }
 
+    Vector3 ClampMoveDirection(Vector3 moveDirection)
+    {
+        if (moveDirection.magnitude >= maxPlayerMovementSpeed)
+        {
+            return moveDirection.normalized * maxPlayerMovementSpeed;
+        }
+
+        return moveDirection;
+    }
     
 
     void ClampPlayer()
