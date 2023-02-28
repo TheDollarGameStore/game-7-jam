@@ -12,7 +12,7 @@ public class WeaponPickup : MonoBehaviour
 
         position.Normalize();
 
-        transform.position = (position * Random.Range(0f, 15f)) + Vector3.up;
+        transform.position = (position * Random.Range(0f, 15f)) + (Vector3.up * 2f);
     }
 
     // Update is called once per frame
