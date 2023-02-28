@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IEnemy : MonoBehaviour
 {
@@ -18,11 +19,14 @@ public class IEnemy : MonoBehaviour
 
     [SerializeField] private GameObject starPrefab;
 
+    [SerializeField] private Text hpText;
+
     // Start is called before the first frame update
     public void Start()
     {
         mr = GetComponent<MeshRenderer>();
         defaultMaterial = mr.material;
+        hpText.text = hp.ToString();
     }
 
     // Update is called once per frame
@@ -37,6 +41,10 @@ public class IEnemy : MonoBehaviour
         if (hp <= 0)
         {
             Die();
+        }
+        else
+        {
+            hpText.text = Mathf.CeilToInt(hp).ToString();
         }
     }
 
