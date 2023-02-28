@@ -7,6 +7,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private GameObject chaser;
     [SerializeField] private GameObject floater;
     [SerializeField] private GameObject hider;
+    [SerializeField] private GameObject tank;
 
     private float spawnTime = 4f;
 
@@ -26,11 +27,16 @@ public class WaveManager : MonoBehaviour
 
     void Spawn()
     {
+        if (GameManager.instance.gameOver)
+        {
+            return;
+        }
+
         Invoke("Spawn", spawnTime);
 
         Vector3 spawnLocation = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * 25f;
 
-        switch (Random.Range(0, 3)) {
+        switch (Random.Range(0, 4)) {
             case 0:
                 Instantiate(chaser, spawnLocation + (Vector3.up * 1.5f), Quaternion.identity);
                 break;
@@ -39,6 +45,9 @@ public class WaveManager : MonoBehaviour
                 break;
             case 2:
                 Instantiate(hider, spawnLocation + (Vector3.up * 1f), Quaternion.Euler(new Vector3(-90f, 0f, 0f)));
+                break;
+            case 3:
+                Instantiate(tank, spawnLocation + (Vector3.up * 1.75f), Quaternion.identity);
                 break;
         }
     }

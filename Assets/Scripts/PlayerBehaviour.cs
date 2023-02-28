@@ -2,9 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Weapon
+{
+    STANDARD,
+    MACHINE_GUN,
+    SHOTGUN,
+    ROCKET
+}
+
 public class PlayerBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject standardBulletPrefab;
+    [SerializeField] private GameObject shotgunBulletPrefab;
+    [SerializeField] private GameObject machineGunBulletPrefab;
+    [SerializeField] private GameObject rocketBulletPrefab;
 
     [SerializeField] private AudioClip shootSound;
 
@@ -14,17 +25,45 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField] private AudioClip deathSound;
 
+    public Weapon weapon;
+
     private bool loaded = true;
 
     void Shoot()
     {
-        Bullet bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
-
-        bullet.bulletDir = transform.rotation.eulerAngles;
+        Bullet bulletComponent;
+        switch (weapon)
+        {
+            case Weapon.STANDARD:
+                bulletComponent = Instantiate(standardBulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
+                bulletComponent.bulletDir = transform.rotation.eulerAngles;
+                Invoke("Reload", 0.2f);
+                SoundManager.instance.PlayRandomized(shootSound);
+                break;
+            case Weapon.SHOTGUN:
+                for (int i = -4; i <= 4; i += 2)
+                {
+                    bulletComponent = Instantiate(shotgunBulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
+                    bulletComponent.bulletDir = transform.rotation.eulerAngles + new Vector3(0f, -i, 0f);
+                }
+                Invoke("Reload", 0.3f);
+                SoundManager.instance.PlayRandomized(shootSound);
+                break;
+            case Weapon.MACHINE_GUN:
+                bulletComponent = Instantiate(machineGunBulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
+                bulletComponent.bulletDir = transform.rotation.eulerAngles + new Vector3(0f, Random.Range(-3f, 3f), 0f);
+                Invoke("Reload", 0.075f);
+                SoundManager.instance.PlayRandomized(shootSound);
+                break;
+            case Weapon.ROCKET:
+                bulletComponent = Instantiate(rocketBulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
+                bulletComponent.bulletDir = transform.rotation.eulerAngles;
+                Invoke("Reload", 1f);
+                SoundManager.instance.PlayRandomized(shootSound);
+                break;
+        }
 
         GameManager.instance.cameraBehaviour.Nudge();
-
-        SoundManager.instance.PlayRandomized(shootSound);
     }
 
     // Update is called once per frame
@@ -38,7 +77,6 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetMouseButton(0) && loaded)
         {
             loaded = false;
-            Invoke("Reload", 0.2f);
             Shoot();
         }
     }
@@ -54,6 +92,11 @@ public class PlayerBehaviour : MonoBehaviour
             Instantiate(deathParticles, transform.position + (Vector3.up * 2f), Quaternion.identity);
         }
         //Destroy(gameObject);
+    }
+
+    public void SwapWeapon()
+    {
+
     }
 
     void Reload()

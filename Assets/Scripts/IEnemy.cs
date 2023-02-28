@@ -26,13 +26,13 @@ public class IEnemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
         mr.material = damageMaterial;
         CancelInvoke("ResetMaterial");
         Invoke("ResetMaterial", 0.075f);
 
-        hp -= 1;
+        hp -= damage;
 
         if (hp <= 0)
         {

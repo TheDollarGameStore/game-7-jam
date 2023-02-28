@@ -35,7 +35,7 @@ Transform:
   m_Children:
   - {fileID: 8640192480954111634}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &3573020806962300721
 MeshFilter:
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMaterial: {fileID: 2100000, guid: b21da4fb28240ca478409c2289afbb89, type: 2}
-  hp: 3
+  hp: 75
   explosion: {fileID: 8300000, guid: 921397cf60bfbc4469a090013e1cee55, type: 3}
   deathParticles: {fileID: 2217194140098553844, guid: 2c3bbdea84676dd49838f897a4d2b65f, type: 3}
   scoreValue: 3
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMaterial: {fileID: 2100000, guid: f421934465402a641bc7c749c9d1a2ab, type: 2}
-  hp: 999999
+  hp: 99999999
   explosion: {fileID: 8300000, guid: 921397cf60bfbc4469a090013e1cee55, type: 3}
   deathParticles: {fileID: 2217194140098553844, guid: 2c3bbdea84676dd49838f897a4d2b65f, type: 3}
   scoreValue: 3
