@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     private int multiplier;
 
+    [HideInInspector] public float gunLevel;
+
 
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         multiplier = 1;
         score = 0;
+        gunLevel = 1f;
     }
 
     // Update is called once per frame
@@ -39,6 +42,11 @@ public class GameManager : MonoBehaviour
     {
         score += value * multiplier;
         scoreText.text = score.ToString();
+    }
+
+    public void AddGunLevel()
+    {
+        gunLevel += 0.1f;
     }
 
     public void AddMultiplier(int value)

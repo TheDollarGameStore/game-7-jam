@@ -96,7 +96,18 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void SwapWeapon()
     {
+        //Can't be the same weapon again.
 
+        Weapon choice = (Weapon)Random.Range(0, 4);
+
+        while (choice == weapon)
+        {
+            choice = (Weapon)Random.Range(0, 4);
+        }
+
+        CancelInvoke("Reload");
+        weapon = choice;
+        loaded = true;
     }
 
     void Reload()

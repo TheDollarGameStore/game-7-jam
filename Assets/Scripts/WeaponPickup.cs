@@ -5,6 +5,16 @@ using UnityEngine;
 public class WeaponPickup : MonoBehaviour
 {
     [SerializeField] private AudioClip weaponSwapSound;
+
+    private void Start()
+    {
+        Vector3 position = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
+
+        position.Normalize();
+
+        transform.position = (position * Random.Range(0f, 15f)) + Vector3.up;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -12,6 +22,7 @@ public class WeaponPickup : MonoBehaviour
         {
             GameManager.instance.playerObject.GetComponent<PlayerBehaviour>().SwapWeapon();
             SoundManager.instance.PlayRandomized(weaponSwapSound);
+            GameManager.instance.AddGunLevel();
             Destroy(gameObject);
         }
     }

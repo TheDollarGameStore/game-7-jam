@@ -8,7 +8,7 @@ public class IEnemy : MonoBehaviour
     private Material defaultMaterial;
     [SerializeField] private Material damageMaterial;
 
-    [SerializeField] private int hp;
+    [SerializeField] private float hp;
 
     [SerializeField] private AudioClip explosion;
 
@@ -32,7 +32,7 @@ public class IEnemy : MonoBehaviour
         CancelInvoke("ResetMaterial");
         Invoke("ResetMaterial", 0.075f);
 
-        hp -= damage;
+        hp -= damage * GameManager.instance.gunLevel;
 
         if (hp <= 0)
         {
