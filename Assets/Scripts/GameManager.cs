@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public bool gameOver;
 
+    [SerializeField] private Text gunLevelText;
+
     private int score;
 
     private int multiplier;
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
     public void AddGunLevel()
     {
         gunLevel += 0.1f;
+        gunLevelText.text = "x " + gunLevel.ToString();
     }
 
     public void AddMultiplier(int value)
