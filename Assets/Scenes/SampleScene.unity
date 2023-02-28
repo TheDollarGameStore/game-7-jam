@@ -2031,11 +2031,14 @@ MonoBehaviour:
   shotgunBulletPrefab: {fileID: 7176121040413562736, guid: f062dc86e3f0c4548a7fe62e161eb486, type: 3}
   machineGunBulletPrefab: {fileID: 7176121040413562736, guid: dfd198459b7ecba46a5505fc9ac5b065, type: 3}
   rocketBulletPrefab: {fileID: 7176121040413562736, guid: e89ca4f6d8da88140be7212a851d2281, type: 3}
-  shootSound: {fileID: 8300000, guid: c9d1f921fa741464ea10e5ea18570e35, type: 3}
+  standardSound: {fileID: 8300000, guid: c9d1f921fa741464ea10e5ea18570e35, type: 3}
+  shotgunSound: {fileID: 8300000, guid: b5f5429f55991fe469830eef548aa665, type: 3}
+  machineGunSound: {fileID: 8300000, guid: 31a54985146fc434aa17e012b6961038, type: 3}
+  rocketSound: {fileID: 8300000, guid: c213586d83c31f74295277ab4b35cf0d, type: 3}
   playerCam: {fileID: 963194225}
   deathParticles: {fileID: 1830139182949298403, guid: 55053a6cf31902348a54c549959b255f, type: 3}
   deathSound: {fileID: 8300000, guid: 0311262ba1c3a2b4a8abfcf59e2296a7, type: 3}
-  weapon: 0
+  weapon: 3
 --- !u!1001 &1613524771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2227,6 +2230,7 @@ MonoBehaviour:
   gameOver: 0
   gunLevelText: {fileID: 1832221840}
   gunLevel: 0
+  enemyLevel: 0
 --- !u!1 &1832221838
 GameObject:
   m_ObjectHideFlags: 0

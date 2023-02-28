@@ -214,7 +214,8 @@ MonoBehaviour:
   bulletSpeed: 50
   bulletDir: {x: 0, y: 0, z: 0}
   damage: 50
-  instantiateAfterHit: {fileID: 0}
+  instantiateAfterHit: {fileID: 2217194140098553844, guid: c9c07ec93f5484e4a8c849dbee522991, type: 3}
+  hitSound: {fileID: 8300000, guid: 2aed5f3df333d154997d046924dd15d5, type: 3}
 --- !u!1 &7439029929440821372
 GameObject:
   m_ObjectHideFlags: 0

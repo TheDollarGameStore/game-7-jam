@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     [HideInInspector] public Vector3 bulletDir;
     [SerializeField] private int damage;
     [SerializeField] private GameObject instantiateAfterHit;
+    [SerializeField] private AudioClip hitSound;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,11 @@ public class Bullet : MonoBehaviour
                 if (instantiateAfterHit != null)
                 {
                     Instantiate(instantiateAfterHit, transform.position, Quaternion.identity);
+                }
+
+                if (hitSound != null)
+                {
+                    SoundManager.instance.PlayRandomized(hitSound);
                 }
 
                 Destroy(gameObject);

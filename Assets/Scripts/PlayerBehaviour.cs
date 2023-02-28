@@ -17,7 +17,10 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private GameObject machineGunBulletPrefab;
     [SerializeField] private GameObject rocketBulletPrefab;
 
-    [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip standardSound;
+    [SerializeField] private AudioClip shotgunSound;
+    [SerializeField] private AudioClip machineGunSound;
+    [SerializeField] private AudioClip rocketSound;
 
     [SerializeField] private GameObject playerCam;
 
@@ -38,7 +41,7 @@ public class PlayerBehaviour : MonoBehaviour
                 bulletComponent = Instantiate(standardBulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
                 bulletComponent.bulletDir = transform.rotation.eulerAngles;
                 Invoke("Reload", 0.2f);
-                SoundManager.instance.PlayRandomized(shootSound);
+                SoundManager.instance.PlayRandomized(standardSound);
                 break;
             case Weapon.SHOTGUN:
                 for (int i = -4; i <= 4; i += 2)
@@ -47,19 +50,19 @@ public class PlayerBehaviour : MonoBehaviour
                     bulletComponent.bulletDir = transform.rotation.eulerAngles + new Vector3(0f, -i, 0f);
                 }
                 Invoke("Reload", 0.3f);
-                SoundManager.instance.PlayRandomized(shootSound);
+                SoundManager.instance.PlayRandomized(shotgunSound);
                 break;
             case Weapon.MACHINE_GUN:
                 bulletComponent = Instantiate(machineGunBulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
                 bulletComponent.bulletDir = transform.rotation.eulerAngles + new Vector3(0f, Random.Range(-3f, 3f), 0f);
                 Invoke("Reload", 0.075f);
-                SoundManager.instance.PlayRandomized(shootSound);
+                SoundManager.instance.PlayRandomized(machineGunSound);
                 break;
             case Weapon.ROCKET:
                 bulletComponent = Instantiate(rocketBulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
                 bulletComponent.bulletDir = transform.rotation.eulerAngles;
                 Invoke("Reload", 1f);
-                SoundManager.instance.PlayRandomized(shootSound);
+                SoundManager.instance.PlayRandomized(rocketSound);
                 break;
         }
 
