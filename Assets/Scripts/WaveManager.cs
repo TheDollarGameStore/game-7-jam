@@ -9,11 +9,15 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private GameObject hider;
     [SerializeField] private GameObject tank;
 
+    [SerializeField] private GameObject weaponDrop;
+
     private float spawnTime = 4f;
 
     private void Start()
     {
         Invoke("Spawn", 2f);
+
+        Invoke("WeaponDrop", 10f);
 
         Invoke("DecreaseSpawnTime", 10f);
     }
@@ -23,6 +27,12 @@ public class WaveManager : MonoBehaviour
         spawnTime = Mathf.Max(spawnTime - 0.25f, 0.5f);
 
         Invoke("DecreaseSpawnTime", 10f);
+    }
+
+    void WeaponDrop()
+    {
+        Instantiate(weaponDrop, Vector3.zero, Quaternion.identity);
+        Invoke("WeaponDrop", 10f);
     }
 
     void Spawn()

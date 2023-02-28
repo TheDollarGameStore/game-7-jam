@@ -33,6 +33,8 @@ public class IEnemy : MonoBehaviour
         mr = GetComponent<MeshRenderer>();
         defaultMaterial = mr.material;
 
+        hp *= GameManager.instance.enemyLevel;
+
         if (hpCounterPrefab != null)
         {
             hpCounter = Instantiate(hpCounterPrefab, transform.position, Quaternion.identity);
@@ -50,16 +52,9 @@ public class IEnemy : MonoBehaviour
 
         hp -= damage * GameManager.instance.gunLevel;
 
-        if (hp <= 0)
+        if (hpText != null)
         {
-            Die();
-        }
-        else
-        {
-            if (hpText != null)
-            {
-                hpText.text = Mathf.CeilToInt(hp).ToString();
-            }
+            hpText.text = Mathf.CeilToInt(hp).ToString();
         }
     }
 
@@ -99,6 +94,11 @@ public class IEnemy : MonoBehaviour
         if (Vector3.Distance(new Vector3(transform.position.x, 0f, transform.position.z), GameManager.instance.playerObject.transform.position) <= 1.75f)
         {
             GameManager.instance.playerObject.GetComponent<PlayerBehaviour>().Die();
+        }
+
+        if (hp <= 0)
+        {
+            Die();
         }
     }
 }

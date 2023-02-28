@@ -2355,6 +2355,7 @@ MonoBehaviour:
   floater: {fileID: 6513979959840619548, guid: 0a364caf5eae8764cb60dedaa44b2759, type: 3}
   hider: {fileID: 126213371766414164, guid: 18a04602b7010cd44a076559ff609b2e, type: 3}
   tank: {fileID: 4490683032022649352, guid: 235bcc93e76268d4794e0348a621b90e, type: 3}
+  weaponDrop: {fileID: 5852259823816918294, guid: 5f0b6984c947bec4a8b0694231e1e244, type: 3}
 --- !u!1001 &1867767329
 PrefabInstance:
   m_ObjectHideFlags: 0

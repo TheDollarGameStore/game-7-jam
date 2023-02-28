@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public float gunLevel;
 
+    [HideInInspector] public float enemyLevel;
+
 
     private void Awake()
     {
@@ -37,6 +39,9 @@ public class GameManager : MonoBehaviour
         multiplier = 1;
         score = 0;
         gunLevel = 1f;
+        enemyLevel = 1f;
+
+        Invoke("AddEnemyLevel", 15f);
     }
 
     // Update is called once per frame
@@ -44,6 +49,12 @@ public class GameManager : MonoBehaviour
     {
         score += value * multiplier;
         scoreText.text = score.ToString();
+    }
+
+    public void AddEnemyLevel()
+    {
+        Invoke("AddEnemyLevel", 15f);
+        enemyLevel += 0.1f;
     }
 
     public void AddGunLevel()

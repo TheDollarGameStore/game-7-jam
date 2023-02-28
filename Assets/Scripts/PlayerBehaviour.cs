@@ -43,7 +43,7 @@ public class PlayerBehaviour : MonoBehaviour
             case Weapon.SHOTGUN:
                 for (int i = -4; i <= 4; i += 2)
                 {
-                    bulletComponent = Instantiate(shotgunBulletPrefab, transform.position + ((transform.forward * -i) * 0.01f), Quaternion.identity).GetComponent<Bullet>();
+                    bulletComponent = Instantiate(shotgunBulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
                     bulletComponent.bulletDir = transform.rotation.eulerAngles + new Vector3(0f, -i, 0f);
                 }
                 Invoke("Reload", 0.3f);
