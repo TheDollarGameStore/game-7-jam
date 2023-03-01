@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public float enemyLevel;
 
+    [SerializeField] private GameObject gameOverCanvas;
+
+    [SerializeField] private Text highscoreText;
+
 
     private void Awake()
     {
@@ -40,7 +44,7 @@ public class GameManager : MonoBehaviour
         gunLevel = 1f;
         enemyLevel = 1f;
 
-        Invoke("AddEnemyLevel", 15f);
+        Invoke("AddEnemyLevel", 9f);
     }
 
     // Update is called once per frame
@@ -52,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     public void AddEnemyLevel()
     {
-        Invoke("AddEnemyLevel", 15f);
+        Invoke("AddEnemyLevel", 9f);
         enemyLevel += 0.1f;
     }
 
@@ -68,17 +72,24 @@ public class GameManager : MonoBehaviour
         multiplierText.text = "X" + multiplier.ToString();
     }
 
-    private void Update()
+    public void Lose()
     {
-        if (gameOver)
+        gameOver = true;
+
+        Invoke("ShowGameOver", 2f);
+    }
+
+    void ShowGameOver()
+    {
+        gameOverCanvas.SetActive(true);
+        if (score > PlayerPrefs.GetInt("Highscore", 0))
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (Transitioner.Instance.CanTransition())
-                {
-                    Transitioner.Instance.TransitionToScene("Menu");
-                }
-            }
+            highscoreText.text = "NEW HIGHSCORE";
+            PlayerPrefs.SetInt("Highscore", score);
+        }
+        else
+        {
+            highscoreText.text = "GAME OVER\n\n" + "HIGHSCORE\n" + PlayerPrefs.GetInt("Highscore", 0).ToString();
         }
     }
 }

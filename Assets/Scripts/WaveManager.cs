@@ -24,13 +24,18 @@ public class WaveManager : MonoBehaviour
 
     void DecreaseSpawnTime()
     {
-        spawnTime = Mathf.Max(spawnTime - 0.25f, 0.5f);
+        spawnTime = Mathf.Max(spawnTime - 0.25f, 0.75f);
 
-        Invoke("DecreaseSpawnTime", 10f);
+        Invoke("DecreaseSpawnTime", 15f);
     }
 
     void WeaponDrop()
     {
+        if (GameManager.instance.gameOver)
+        {
+            return;
+        }
+
         Instantiate(weaponDrop, Vector3.zero, Quaternion.identity);
         Invoke("WeaponDrop", 10f);
     }

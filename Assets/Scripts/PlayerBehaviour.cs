@@ -90,7 +90,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             SoundManager.instance.PlayRandomized(deathSound);
             playerCam.transform.parent = null;
-            GameManager.instance.gameOver = true;
+            GameManager.instance.Lose();
             GameManager.instance.cameraBehaviour.Shake(10f);
             Instantiate(deathParticles, transform.position + (Vector3.up * 2f), Quaternion.identity);
         }

@@ -9,6 +9,8 @@ public class NavigationButton : MonoBehaviour
 
     [SerializeField] private string destination;
 
+    [SerializeField] private AudioClip selectSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,7 @@ public class NavigationButton : MonoBehaviour
             {
                 wobbler.DoTheWobble();
                 Transitioner.Instance.TransitionToScene(destination);
+                SoundManager.instance.PlayRandomized(selectSound);
             }
         }
     }
