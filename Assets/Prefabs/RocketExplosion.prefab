@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2380602111991416124}
   - component: {fileID: 2149337437121998842}
   - component: {fileID: 8520556976819433927}
+  - component: {fileID: 899536189862842622}
   m_Layer: 0
   m_Name: RocketExplosion
   m_TagString: Untagged
@@ -4844,6 +4845,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 1.2
+--- !u!114 &899536189862842622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2217194140098553844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b7dedd84145774d9021d10cbd5ecc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 10
+  damage: 0
 --- !u!1 &6838177043978062399
 GameObject:
   m_ObjectHideFlags: 0

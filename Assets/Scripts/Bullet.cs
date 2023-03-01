@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
         Vector3 movement = transform.forward * Time.deltaTime * bulletSpeed;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, movement, out hit, movement.magnitude))
+        if (Physics.Raycast(transform.position, movement, out hit, Time.deltaTime * bulletSpeed * 1.25f))
         {
             if (hit.collider.CompareTag("Enemy"))
             {
@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
 
                 if (instantiateAfterHit != null)
                 {
-                    Instantiate(instantiateAfterHit, transform.position, Quaternion.identity);
+                    Instantiate(instantiateAfterHit, transform.position, Quaternion.identity).GetComponent<ExplosionDamage>().damage = Mathf.RoundToInt(damage / 2f);
                 }
 
                 if (hitSound != null)

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4303896454200725906}
   - component: {fileID: 6456262559817670939}
   - component: {fileID: 674172595017816799}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3402576904140228464}
   - component: {fileID: 5748463965855870812}
   - component: {fileID: 6638848840379953323}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 50
   bulletDir: {x: 0, y: 0, z: 0}
-  damage: 50
+  damage: 75
   instantiateAfterHit: {fileID: 2217194140098553844, guid: c9c07ec93f5484e4a8c849dbee522991, type: 3}
   hitSound: {fileID: 8300000, guid: 2aed5f3df333d154997d046924dd15d5, type: 3}
 --- !u!1 &7439029929440821372
@@ -225,7 +225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7880818962409361648}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
