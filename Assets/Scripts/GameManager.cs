@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -75,7 +74,10 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                if (Transitioner.Instance.CanTransition())
+                {
+                    Transitioner.Instance.TransitionToScene("Menu");
+                }
             }
         }
     }

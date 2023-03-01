@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 public class NavigationButton : MonoBehaviour
 {
     [SerializeField] private bool rightClick;
 
     private Wobble wobbler;
+
+    [SerializeField] private string destination;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,11 @@ public class NavigationButton : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(rightClick ? 1 : 0))
         {
-            wobbler.DoTheWobble();
+            if (Transitioner.Instance.CanTransition())
+            {
+                wobbler.DoTheWobble();
+                Transitioner.Instance.TransitionToScene(destination);
+            }
         }
     }
 }
