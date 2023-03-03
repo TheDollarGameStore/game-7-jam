@@ -1,24 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float mouseSensitivity = 100f;
+    [SerializeField] private float mouseSensitivity;
 
     [SerializeField] private float maxPlayerMovementSpeed;
 
     private bool isStrafing = false;
 
+    private float configuredSensitivity;
+
+    [SerializeField] private Slider slider;
+
 
 
     void Start()
     {
+        configuredSensitivity = PlayerPrefs.GetFloat("ConfiguredSensitivity", 0.25f);
         Cursor.lockState = CursorLockMode.Locked;
+        slider.value = configuredSensitivity;
+    }
+
+    void ModifySensitivity(float value)
+    {
+        value /= 50f;
+
+        configuredSensitivity += value;
+
+        if (configuredSensitivity < 0.05f)
+        {
+            configuredSensitivity = 0.05f;
+        }
+
+        if (configuredSensitivity > 1f)
+        {
+            configuredSensitivity = 1f;
+        }
+
+        PlayerPrefs.SetFloat("ConfiguredSensitivity", configuredSensitivity);
+        slider.value = configuredSensitivity;
     }
 
     void Update()
     {
+        if (Input.mouseScrollDelta.y != 0)
+        {
+            ModifySensitivity(Input.mouseScrollDelta.y);
+        }
+
         if (GameManager.instance.gameOver)
         {
             return;
@@ -35,8 +67,8 @@ public class PlayerController : MonoBehaviour
 
         if (isStrafing)
         {
-            float strafeX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-            float strafeZ = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+            float strafeX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime * configuredSensitivity;
+            float strafeZ = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime * configuredSensitivity;
 
             //Tilt Camera
             GameManager.instance.cameraBehaviour.gameObject.transform.localRotation = Quaternion.Euler(GameManager.instance.cameraBehaviour.transform.localRotation.eulerAngles + new Vector3(0f, 0f, strafeX / -2f));
@@ -50,8 +82,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * 5f * Time.deltaTime;
-            float moveZ = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * 5f * Time.deltaTime * configuredSensitivity;
+            float moveZ = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime * configuredSensitivity;
 
             transform.Rotate(Vector3.up * mouseX);
 

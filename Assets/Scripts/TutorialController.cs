@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TutorialController : MonoBehaviour
 {
-    [SerializeField] private float mouseSensitivity = 100f;
+    [SerializeField] private float mouseSensitivity;
 
     [SerializeField] private float maxPlayerMovementSpeed;
 
@@ -27,6 +27,14 @@ public class TutorialController : MonoBehaviour
 
     [SerializeField] private AudioClip standardSound;
 
+    private bool tutorialFinished;
+
+    private float configuredSensitivity;
+
+    [SerializeField] private Slider slider;
+
+    [SerializeField] private GameObject sensitivityIndicator;
+
 
     void Shoot()
     {
@@ -40,22 +48,63 @@ public class TutorialController : MonoBehaviour
         phaseProgress += 10;
     }
 
+    void ModifySensitivity(float value)
+    {
+        value /= 50f;
+
+        configuredSensitivity += value;
+
+        if (configuredSensitivity < 0.05f)
+        {
+            configuredSensitivity = 0.05f;
+        }
+
+        if (configuredSensitivity > 1f)
+        {
+            configuredSensitivity = 1f;
+        }
+
+        PlayerPrefs.SetFloat("ConfiguredSensitivity", configuredSensitivity);
+        slider.value = configuredSensitivity;
+    }
+
     void Start()
     {
+        configuredSensitivity = PlayerPrefs.GetFloat("ConfiguredSensitivity", 0.25f);
         phase = 1;
         Cursor.lockState = CursorLockMode.Locked;
+        slider.value = configuredSensitivity;
     }
 
     void IncreasePhase()
     {
-        phase++;
-        tutorialImage.sprite = phaseSprites[phase - 1];
-        progressBar.fillAmount = 0f;
-        phaseProgress = 0f;
+        if (phase != 5)
+        {
+            phase++;
+            tutorialImage.sprite = phaseSprites[phase - 1];
+            progressBar.fillAmount = 0f;
+            phaseProgress = 0f;
+
+            if (phase == 5)
+            {
+                sensitivityIndicator.SetActive(true);
+            }
+        }
+        else if (!tutorialFinished)
+        {
+            tutorialFinished = true;
+            Invoke("GoToMenu", 2f);
+        }
     }
 
     void Update()
     {
+        if (phase == 5 && Input.mouseScrollDelta.y != 0)
+        {
+            phaseProgress += Mathf.Abs(Input.mouseScrollDelta.y);
+            ModifySensitivity(Input.mouseScrollDelta.y);
+        }
+
         if (phase == 4 && Input.GetMouseButton(0) && loaded)
         {
             Shoot();
@@ -75,8 +124,8 @@ public class TutorialController : MonoBehaviour
         
         if (isStrafing)
         {
-            float strafeX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-            float strafeZ = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+            float strafeX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime * configuredSensitivity;
+            float strafeZ = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime * configuredSensitivity;
 
             //Tilt Camera
             GameManager.instance.cameraBehaviour.gameObject.transform.localRotation = Quaternion.Euler(GameManager.instance.cameraBehaviour.transform.localRotation.eulerAngles + new Vector3(0f, 0f, strafeX / -2f));
@@ -99,8 +148,8 @@ public class TutorialController : MonoBehaviour
             {
                 return;
             }
-            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * 5f * Time.deltaTime;
-            float moveZ = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * 5f * Time.deltaTime * configuredSensitivity;
+            float moveZ = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime * configuredSensitivity;
 
             if (phase != 2)
             {
@@ -150,6 +199,11 @@ public class TutorialController : MonoBehaviour
     void Reload()
     {
         loaded = true;
+    }
+
+    void GoToMenu()
+    {
+        Transitioner.Instance.TransitionToScene("Menu");
     }
 
 
