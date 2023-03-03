@@ -35,6 +35,8 @@ public class TutorialController : MonoBehaviour
 
     [SerializeField] private GameObject sensitivityIndicator;
 
+    [SerializeField] private AudioClip progressSound;
+
 
     void Shoot()
     {
@@ -85,6 +87,8 @@ public class TutorialController : MonoBehaviour
             progressBar.fillAmount = 0f;
             phaseProgress = 0f;
 
+            SoundManager.instance.PlayRandomized(progressSound);
+
             if (phase == 5)
             {
                 sensitivityIndicator.SetActive(true);
@@ -92,6 +96,7 @@ public class TutorialController : MonoBehaviour
         }
         else if (!tutorialFinished)
         {
+            SoundManager.instance.PlayRandomized(progressSound);
             tutorialFinished = true;
             Invoke("GoToMenu", 2f);
         }
@@ -101,7 +106,7 @@ public class TutorialController : MonoBehaviour
     {
         if (phase == 5 && Input.mouseScrollDelta.y != 0)
         {
-            phaseProgress += Mathf.Abs(Input.mouseScrollDelta.y);
+            phaseProgress += Mathf.Abs(Input.mouseScrollDelta.y) * 3f;
             ModifySensitivity(Input.mouseScrollDelta.y);
         }
 

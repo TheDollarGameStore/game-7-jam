@@ -2470,6 +2470,7 @@ MonoBehaviour:
   standardSound: {fileID: 8300000, guid: c9d1f921fa741464ea10e5ea18570e35, type: 3}
   slider: {fileID: 545045064}
   sensitivityIndicator: {fileID: 676839969}
+  progressSound: {fileID: 8300000, guid: b932bf8702701424c9c242579e788489, type: 3}
 --- !u!1 &1590831004
 GameObject:
   m_ObjectHideFlags: 0
