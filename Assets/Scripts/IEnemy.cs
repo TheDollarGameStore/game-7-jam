@@ -52,6 +52,8 @@ public class IEnemy : MonoBehaviour
 
         hp -= damage * GameManager.instance.gunLevel;
 
+        hp = Mathf.Max(hp, 0);
+
         if (hpText != null)
         {
             hpText.text = Mathf.CeilToInt(hp).ToString();
