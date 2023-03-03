@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour
         gameOver = true;
 
         Invoke("ShowGameOver", 2f);
+
+        PlayerPrefs.SetInt("TotalRuns", PlayerPrefs.GetInt("TotalRuns", 0) + 1);
     }
 
     void ShowGameOver()
