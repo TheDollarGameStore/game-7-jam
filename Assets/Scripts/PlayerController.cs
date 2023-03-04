@@ -70,10 +70,11 @@ public class PlayerController : MonoBehaviour
             float strafeX = Input.GetAxis("Mouse X") * mouseSensitivity * configuredSensitivity;
             float strafeZ = Input.GetAxis("Mouse Y") * mouseSensitivity * configuredSensitivity;
 
-            //Tilt Camera
-            GameManager.instance.cameraBehaviour.gameObject.transform.localRotation = Quaternion.Euler((GameManager.instance.cameraBehaviour.transform.localRotation.eulerAngles + new Vector3(0f, 0f, strafeX * -1f * Time.deltaTime)));
-
             Vector3 strafeDirection = new Vector3(strafeX, 0, strafeZ);
+
+            //Tilt Camera
+            GameManager.instance.cameraBehaviour.gameObject.transform.localRotation = Quaternion.Euler((GameManager.instance.cameraBehaviour.transform.localRotation.eulerAngles + new Vector3(0f, 0f, ClampMoveDirection(strafeDirection).x * -1f * Time.deltaTime)));
+
             Vector3 moveDirection = transform.TransformDirection(strafeDirection);
 
             moveDirection = ClampMoveDirection(moveDirection);
