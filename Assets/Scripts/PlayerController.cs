@@ -67,31 +67,31 @@ public class PlayerController : MonoBehaviour
 
         if (isStrafing)
         {
-            float strafeX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime * configuredSensitivity;
-            float strafeZ = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime * configuredSensitivity;
+            float strafeX = Input.GetAxis("Mouse X") * mouseSensitivity * configuredSensitivity;
+            float strafeZ = Input.GetAxis("Mouse Y") * mouseSensitivity * configuredSensitivity;
 
             //Tilt Camera
-            GameManager.instance.cameraBehaviour.gameObject.transform.localRotation = Quaternion.Euler(GameManager.instance.cameraBehaviour.transform.localRotation.eulerAngles + new Vector3(0f, 0f, strafeX / -2f));
+            GameManager.instance.cameraBehaviour.gameObject.transform.localRotation = Quaternion.Euler((GameManager.instance.cameraBehaviour.transform.localRotation.eulerAngles + new Vector3(0f, 0f, strafeX * -1f * Time.deltaTime)));
 
             Vector3 strafeDirection = new Vector3(strafeX, 0, strafeZ);
             Vector3 moveDirection = transform.TransformDirection(strafeDirection);
 
             moveDirection = ClampMoveDirection(moveDirection);
 
-            transform.position += moveDirection;
+            transform.position += moveDirection * Time.deltaTime;
         }
         else
         {
-            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * 5f * Time.deltaTime * configuredSensitivity;
-            float moveZ = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime * configuredSensitivity;
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * 5f * configuredSensitivity;
+            float moveZ = Input.GetAxis("Mouse Y") * mouseSensitivity * configuredSensitivity;
 
-            transform.Rotate(Vector3.up * mouseX);
+            transform.Rotate(Vector3.up * mouseX * Time.deltaTime);
 
             Vector3 moveDirection = transform.forward * moveZ;
 
             moveDirection = ClampMoveDirection(moveDirection);
 
-            transform.position += moveDirection;
+            transform.position += moveDirection * Time.deltaTime;
         }
 
         //Clamp player

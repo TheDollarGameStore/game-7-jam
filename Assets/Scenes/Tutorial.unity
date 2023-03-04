@@ -2457,7 +2457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 400
-  maxPlayerMovementSpeed: 0.25
+  maxPlayerMovementSpeed: 100
   phaseSprites:
   - {fileID: 21300000, guid: 6464d47431febe44bb4f7b237f4b45bb, type: 3}
   - {fileID: 21300000, guid: 15eaac44e064b984e9d5e22bbfc2b59c, type: 3}

@@ -2454,7 +2454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 400
-  maxPlayerMovementSpeed: 0.25
+  maxPlayerMovementSpeed: 100
   slider: {fileID: 2144229351}
 --- !u!114 &1578904572
 MonoBehaviour:
