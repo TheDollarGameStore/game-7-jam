@@ -19,14 +19,14 @@ public class WaveManager : MonoBehaviour
 
         Invoke("WeaponDrop", 10f);
 
-        Invoke("DecreaseSpawnTime", 10f);
+        Invoke("DecreaseSpawnTime", 12f);
     }
 
     void DecreaseSpawnTime()
     {
-        spawnTime = Mathf.Max(spawnTime - 0.25f, 0.75f);
+        spawnTime = Mathf.Max(spawnTime - 0.25f, 1f);
 
-        Invoke("DecreaseSpawnTime", 15f);
+        Invoke("DecreaseSpawnTime", 12f);
     }
 
     void WeaponDrop()
@@ -51,7 +51,26 @@ public class WaveManager : MonoBehaviour
 
         Vector3 spawnLocation = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * 25f;
 
-        switch (Random.Range(0, 4)) {
+        int maxchoice;
+
+        if (spawnTime <= 1.75f)
+        {
+            maxchoice = 4;
+        }
+        else if (spawnTime <= 2.5f)
+        {
+            maxchoice = 3;
+        }
+        else if (spawnTime <= 3.25f)
+        {
+            maxchoice = 2;
+        }
+        else
+        {
+            maxchoice = 1;
+        }
+
+        switch (Random.Range(0, maxchoice)) {
             case 0:
                 Instantiate(chaser, spawnLocation + (Vector3.up * 1.5f), Quaternion.identity);
                 break;

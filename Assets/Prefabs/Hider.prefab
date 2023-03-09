@@ -107,7 +107,7 @@ MonoBehaviour:
   starPrefab: {fileID: 4239194039868310259, guid: f0b8a4721ed4cd54180ee311fbac820d, type: 3}
   hpCounterPrefab: {fileID: 8528694495962636440, guid: 8caab7d0a85144443b1f653eb2bf8082, type: 3}
   hpCounterYOfffset: 2.15
-  movementSpeed: 6.5
+  movementSpeed: 6
 --- !u!82 &1932729590540038678
 AudioSource:
   m_ObjectHideFlags: 0
